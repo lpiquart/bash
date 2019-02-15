@@ -1,0 +1,9 @@
+ #!/bin/bash
+for file in /path-to-file/*/*; do
+date -d  "@$(stat -c '%Y' -- "$file")" +'%d-%m-%Y';
+# replacer -print par -exec rm {} \;
+if [[ $(find "$file"  -mtime +10 -exec rm {} \; ) ]]; then
+  echo  -e "\n Le fichier  $file existe depuis  plus de 10 jours"
+fi
+done
+
